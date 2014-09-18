@@ -37,7 +37,12 @@ func BuildMGraph(edges []string) *Mgraph {
 	// intialize to INF
 	for i := 0; i < n; i++ {
 		for j := 0; j < n; j++ {
-			graph.Edges[i][j] = INF
+			if i != j {
+				graph.Edges[i][j] = INF
+			} else {
+				graph.Edges[i][j] = 0
+			}
+
 		}
 	}
 
@@ -53,4 +58,40 @@ func BuildMGraph(edges []string) *Mgraph {
 
 	}
 	return &graph
+}
+
+func makeArray2d(row int, col int) *[][]int {
+	// allocate composed 2d array
+	a := make([][]int, row)
+	e := make([]int, row*col)
+	for i := range a {
+		a[i] = e[i*col : (i+1)*col]
+	}
+
+	return &a
+}
+
+func initializeArray2d(array *[][]int, val int) *[][]int {
+	n := len((*array))
+	for i := 0; i < n; i++ {
+		for j := 0; j < n; j++ {
+			(*array)[i][j] = val
+		}
+	}
+	return array
+}
+
+func initializeArray2d_diag(array *[][]int, val int) *[][]int {
+	n := len((*array))
+	for i := 0; i < n; i++ {
+		for j := 0; j < n; j++ {
+			if i != j {
+				(*array)[i][j] = INF
+			} else {
+				(*array)[i][j] = 0
+			}
+
+		}
+	}
+	return array
 }
