@@ -1,6 +1,7 @@
 package main
 
 import (
+	// "agraph"
 	"container/list"
 	"fmt"
 )
@@ -51,7 +52,7 @@ func buildGraph() *Agraph {
 		"5-6 8",
 		"5-4 1",
 	}
-	graph := Agraph{n: 7, e: 12}
+	graph := Agraph{n: 7, e: len(edges)}
 	graph.adjlist = make([]*Vnode, graph.n)
 
 	for _, edge := range edges {
@@ -134,6 +135,7 @@ func printMap(m map[int]int) {
 
 func main() {
 	fmt.Println("hello")
+	// graph := agraph.BuildGraph()
 	graph := buildGraph()
 
 	// 源点
