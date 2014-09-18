@@ -1,4 +1,4 @@
-package agraph
+package graph
 
 import (
 	"reflect"
@@ -84,7 +84,22 @@ func TestDijkstra(t *testing.T) {
 
 		eq := reflect.DeepEqual(agraphResults[i], result)
 		if !eq {
-			t.Fatalf("第%d个测试失败", i+1)
+			t.Errorf("第%d个测试失败", i+1)
+
+		}
+	}
+}
+
+// 测试邻接图表示的dijkstra算法
+func TestDijkstra_M(t *testing.T) {
+	for i, tt := range agraphTests {
+		graph := BuildMGraph(tt)
+		dist, path := Dijkstra_M(graph, 0)
+		result := aresult{dist: dist, path: path}
+
+		eq := reflect.DeepEqual(agraphResults[i], result)
+		if !eq {
+			t.Errorf("第%d个测试失败", i+1)
 
 		}
 	}

@@ -1,4 +1,4 @@
-package agraph
+package graph
 
 import (
 	"fmt"

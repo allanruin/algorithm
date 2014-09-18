@@ -1,4 +1,4 @@
-package agraph
+package graph
 
 import (
 // "fmt"
@@ -38,6 +38,44 @@ func Dijkstra(graph *Agraph, s int) ([]int, []int) {
 				m[arc.Vertex] = dist[arc.Vertex]
 				path[arc.Vertex] = x
 				// printSlice(dist)
+			}
+		}
+		delete(m, x) // x 归入已知集合S，从未知集合T中删除x的记录
+	}
+
+	return dist, path
+}
+
+// 不支持重载，也只能这样咯
+func prepare_M(graph *Mgraph) ([]int, []int) {
+	// prepare dist and path
+	dist := make([]int, graph.N)
+	path := make([]int, graph.N)
+	for i, _ := range dist {
+		dist[i] = INF
+		path[i] = -1
+	}
+	return dist, path
+}
+
+func Dijkstra_M(graph *Mgraph, s int) ([]int, []int) {
+	dist, path := prepare_M(graph)
+
+	dist[s] = 0
+
+	// 字典m用于记录还未被归入已知集合S的点与其（到源点的）距离
+	m := make(map[int]int)
+	for i, v := range dist {
+		m[i] = v
+	}
+
+	for x := pick(m); x != -1; x = pick(m) {
+		// 对于在未知集合T中距离源点最短的点x，遍历其出发的边，更新可能的距离
+		for i := 0; i < graph.N; i++ {
+			if dist[x]+graph.Edges[x][i] < dist[i] {
+				dist[i] = dist[x] + graph.Edges[x][i]
+				m[i] = dist[i]
+				path[i] = x
 			}
 		}
 		delete(m, x) // x 归入已知集合S，从未知集合T中删除x的记录
