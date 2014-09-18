@@ -90,7 +90,7 @@ func TestDijkstra(t *testing.T) {
 	}
 }
 
-// 测试邻接图表示的dijkstra算法
+// 测试矩阵表示的dijkstra算法
 func TestDijkstra_M(t *testing.T) {
 	for i, tt := range agraphTests {
 		graph := BuildMGraph(tt)
