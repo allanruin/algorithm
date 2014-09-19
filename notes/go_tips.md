@@ -8,7 +8,6 @@ if (*visited)[s] != true {
 	...
 
 	}
-
 }
 ```
 visited的类型是`*[]int`,要先解引用为数组，才能用index取值，而且得加括号。
