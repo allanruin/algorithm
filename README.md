@@ -41,4 +41,5 @@ e.(int) 这样。
 2.开始实现代码的时候并没有很强烈的从递归的参数要求入手。递归的时候要接收一个参数s，指明从哪个编号的点（vertex）开始继续DFS，但一开始写到递归的地方前没有想到这个，于是就写了一个先遍历vnode链（graph.Arlist）的循环，导致出错了。
 3.seq的问题。还是由于递归的关系，各个递归DFS函数无法共享变量，不过考虑到这个每次递归的返回值是添加到后面，就弄了个nseq，再拼接上就好了。
 
+
 ![图的搜索所使用的图](https://github.com/allanruin/algorithm/blob/master/illustrates/Graph_for_search.PNG)
