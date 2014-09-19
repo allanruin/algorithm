@@ -61,9 +61,7 @@ func main() {
 	// fmt.Printf("graph: %+v\n", *mygraph)
 
 	// 构建一个邻接矩阵表示的图，并调用邻接矩阵版本的广度优先算法
-	// mymgraph := graph.BuildMGraph(edges)
-	// tmp2 := make([]bool, mymgraph.N)
-	// visited2 := &tmp2
-	// seq2 := graph.DFS_M(mymgraph, 0, visited2)
-	// fmt.Printf("seq: %v\n", seq2)
+	mymgraph := graph.BuildMGraph(edges)
+	seq2 := graph.BFS_M(mymgraph, 0)
+	fmt.Printf("seq: %v\n", seq2)
 }
