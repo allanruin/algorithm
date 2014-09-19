@@ -42,4 +42,8 @@ e.(int) 这样。
 3.seq的问题。还是由于递归的关系，各个递归DFS函数无法共享变量，不过考虑到这个每次递归的返回值是添加到后面，就弄了个nseq，再拼接上就好了。
 
 
+<<<<<<< HEAD
 ![图的搜索所使用的图](https://github.com/allanruin/algorithm/blob/master/illustrates/Graph_for_search.PNG)
+=======
+![图的搜索所使用的图](https://github.com/allanruin/algorithm/blob/master/illustrates/Graph_for_search.PNG)
+>>>>>>> 8605c4ecbd4b5add9162f061bff96012fecb0e1d
