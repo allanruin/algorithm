@@ -54,7 +54,6 @@ func BuildGraph(edges []string) *Agraph {
 		vertexm[t] = true
 	}
 	n := len(vertexm)
-
 	graph := Agraph{N: n, E: len(edges)}
 	graph.Adjlist = make([]*Vnode, graph.N)
 
@@ -70,6 +69,7 @@ func BuildGraph(edges []string) *Agraph {
 			graph.Adjlist[s] = &Vnode{s, list.New()}
 		}
 		if graph.Adjlist[t] == nil {
+			// defer fmt.Println("panic t", t)
 			graph.Adjlist[t] = &Vnode{t, list.New()}
 		}
 
