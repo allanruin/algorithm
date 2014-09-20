@@ -1,5 +1,11 @@
 
-大部分黑白无水印的图都是我用DOT写出，并通过在线工具http://stamm-wilbrandt.de/GraphvizFiddle/ 生成。比如我生成拓扑排序时的图，用的就是如下的DOT代码
+大部分黑白无水印的图都是我用DOT写出，并通过在线工具http://stamm-wilbrandt.de/GraphvizFiddle/ 生成。比如我生成拓扑排序时的图，
+
+
+![图的拓扑排序所使用的图](https://github.com/allanruin/algorithm/blob/master/illustrates/Graph_for_topologysort.PNG)
+
+
+用的就是如下的DOT代码
 ```
 digraph {
 	0->1;
@@ -35,3 +41,6 @@ digraph {
 	5->6 [label=15];
 }
 ```
+
+
+![带权值的图](https://github.com/allanruin/algorithm/blob/master/illustrates/Graph_with_edge_label.PNG)
