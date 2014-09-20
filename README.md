@@ -45,3 +45,16 @@ e.(int) 这样。
 ![图的搜索所使用的图](https://github.com/allanruin/algorithm/blob/master/illustrates/Graph_for_search.PNG)
 
 
+###拓扑排序
+&emsp;&emsp;拓扑排序的思想是，循环选择入度为0的点，进行输出，同时把改点的邻接点的入度都减一（因为点去掉了，所有射出的边也就去掉了）。这里我写了个stack来作为容器装载度为0的点。当时遇到的一个问题就实现的时候选择的是出度为零的点了！
+```
+for i := range vs {
+	t := vs[i]
+	degree[t] = degree[t] - 1
+	if degree[t] == 0 {
+		//有新的点入度为0，扔到入度零的队列zeros中
+		st.Push(t)
+	}
+}
+```
+TopologySort函数里的这个部分出过几个错误。第一个是混淆了用于遍历的i与邻接点数组储存的点序号，直接用的i带入到degree[]里，应该用vs[i].再者是入队的时候，一时没反应过来我都用了stack了，结果还是append到那个初始的zeros里去，我说怎么始终没入队呢。由于挑选入度0的点时顺序不唯一，所以拓扑排序结果不唯一。
