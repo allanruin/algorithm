@@ -13,7 +13,8 @@ func MakeHeap(seq *[]int) {
 	}
 }
 
-func adjust(seq *[]int, s int, hi int) {
+/*基于pickMin的adjust实现*/
+func adjust_old(seq *[]int, s int, hi int) {
 	lc := s * 2   //left-child
 	rc := s*2 + 1 // right-child
 	// fmt.Printf("lc:%d,rc:%d,len:%d\n", lc, rc, len(*seq))
@@ -28,6 +29,34 @@ func adjust(seq *[]int, s int, hi int) {
 		// 只有被掉过的那个非s的点，可能会和后代不符合heap要求
 		adjust(seq, min_index, hi)
 	}
+}
+
+/*简化版的实现*/
+func adjust(pseq *[]int, s int, hi int) {
+	seq := *pseq
+	lc := s * 2 //left-child
+	p := lc
+	// fmt.Printf("lc:%d,len:%d\n", lc, len(seq))
+
+	// 交换
+	if lc <= hi-1 {
+		// 如果右孩子存在，且比左孩子小，则p指向右孩子。既P是指向孩子中较小的那个
+		if lc+1 <= hi-1 && seq[lc] > seq[lc+1] {
+			p = lc + 1
+		}
+
+		// 如果孩子比点s小
+		if seq[p] < seq[s] {
+			tmp := seq[p]
+			seq[p] = seq[s]
+			seq[s] = tmp
+
+			// 只有被掉过的那个非s的点，可能会和后代不符合heap要求
+			adjust(pseq, p, hi)
+		}
+
+	}
+
 }
 
 // return the index of the minimum element
@@ -75,6 +104,7 @@ func pickMin2(ar []int, l int, r int) int {
 	}
 }
 
+// 排序成为大->小
 func Heapsort(pseq *[]int) {
 	MakeHeap(pseq)
 	seq := *pseq
