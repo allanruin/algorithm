@@ -79,6 +79,15 @@ func BuildGraph(edges []string) *Agraph {
 	return &graph
 }
 
+func (graph *Agraph) getAdjs(s int) []int {
+	seq := make([]int, graph.N)
+	for e := graph.Adjlist[s].Arlist.Front(); e != nil; e = e.Next() {
+		arc := e.Value.(*Arc)
+		seq = append(seq, arc.Vertex)
+	}
+	return seq
+}
+
 func PrintSlice(sl []int) {
 	for _, v := range sl {
 		fmt.Printf("%d ", v)
