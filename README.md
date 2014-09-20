@@ -50,6 +50,8 @@ e.(int) 这样。
 
 
 ![图的拓扑排序所使用的图](https://github.com/allanruin/algorithm/blob/master/illustrates/Graph_for_topologysort.PNG)
+
+
 &emsp;&emsp;拓扑排序的思想是，循环选择入度为0的点，进行输出，同时把改点的邻接点的入度都减一（因为点去掉了，所有射出的边也就去掉了）。这里我写了个stack来作为容器装载度为0的点。当时遇到的一个问题就实现的时候选择的是出度为零的点了！
 ```
 for i := range vs {
