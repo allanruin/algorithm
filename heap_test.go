@@ -1,7 +1,7 @@
 package graph
 
 import (
-	// "reflect"
+	"reflect"
 	"testing"
 )
 
@@ -27,24 +27,41 @@ func TestPickMin(t *testing.T) {
 	}
 }
 
-// var heapTests = [][]int{
-// 	[]int{INF, 49, 38, 65, 97, 76, 13, 27, 49},
-// 	[]int{INF, 2, 7, 10, 8, 9, 1},
-// }
+var heapTests = [][]int{
+	[]int{INF, 49, 38, 65, 97, 76, 13, 27, 49},
+	[]int{INF, 2, 7, 10, 8, 9, 1},
+}
 
-// var heapResults = [][]int{
-// 	[]int{13, 38, 27, 49, 76, 65, 49, 97},
-// 	[]int{1, 7, 2, 8, 9, 10},
-// }
+var heapResults = [][]int{
+	[]int{INF, 13, 38, 27, 49, 76, 65, 49, 97},
+	[]int{INF, 1, 7, 2, 8, 9, 10},
+}
 
-// func TestMakeHeap(t *testing.T) {
-// 	for i, tt := range pickMinTests {
+var heapsortResults = [][]int{
+	[]int{INF, 13, 27, 38, 49, 49, 65, 76, 97},
+	[]int{INF, 1, 2, 7, 8, 9, 10},
+}
 
-// 		MakeHeap(&tt)
-// 		eq := reflect.DeepEqual(tt, heapResults[i])
-// 		if !eq {
-// 			t.Errorf("第%d个测试失败,期待:%v,得到:%v", i+1, heapResults[i], tt)
-// 		}
+func TestMakeHeap(t *testing.T) {
+	for i, tt := range heapTests {
 
-// 	}
-// }
+		MakeHeap(&tt)
+		eq := reflect.DeepEqual(tt, heapResults[i])
+		if !eq {
+			t.Errorf("第%d个MakeHeap测试失败,期待:%v,得到:%v", i+1, heapResults[i], tt)
+		}
+
+	}
+}
+
+func TestHeapsort(t *testing.T) {
+	for i, tt := range heapTests {
+
+		Heapsort(&tt)
+		eq := reflect.DeepEqual(tt, heapResults[i])
+		if !eq {
+			t.Errorf("第%d个Heapsort测试失败,期待:%v,得到:%v", i+1, heapResults[i], tt)
+		}
+
+	}
+}

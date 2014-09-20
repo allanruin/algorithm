@@ -1,9 +1,14 @@
 package graph
 
+import (
+	"fmt"
+)
+
 func MakeHeap(seq *[]int) {
 	s := len(*seq) / 2
 
 	for i := s; i > 0; i-- {
+		// fmt.Println("adjusting ", i)
 		adjust(seq, i)
 	}
 }
@@ -11,6 +16,7 @@ func MakeHeap(seq *[]int) {
 func adjust(seq *[]int, s int) {
 	lc := s * 2   //left-child
 	rc := s*2 + 1 // right-child
+	// fmt.Printf("lc:%d,rc:%d,len:%d\n", lc, rc, len(*seq))
 	min_index := pickMin((*seq), s, lc, rc)
 
 	// 交换
@@ -25,6 +31,9 @@ func adjust(seq *[]int, s int) {
 }
 
 // return the index of the minimum element
+// 关键问题是由于通过2*s 来求得的l,r，所以有可能超过了slice的长度
+// 要做判断根据是否有右孩子、是否有左孩子进行不同的判断
+// 通过将挑选函数单独出来，可以方便换成pickMax就可以转成大项堆了
 func pickMin(ar []int, s, l, r int) int {
 	le := len(ar) - 1
 
@@ -32,7 +41,8 @@ func pickMin(ar []int, s, l, r int) int {
 		return s
 	}
 
-	if r > le && le > l {
+	// 太多边界条件容易出错了，比如这里如果是l<le就错了
+	if r > le && l <= le {
 		if ar[l] < ar[s] {
 			return l
 		} else {
@@ -61,4 +71,21 @@ func pickMin2(ar []int, l int, r int) int {
 	} else {
 		return r
 	}
+}
+
+func Heapsort(pseq *[]int) {
+	MakeHeap(pseq)
+	seq := *pseq
+
+	for i := 1; i <= len(seq)-1; i++ {
+		tmp := seq[1]
+		seq[1] = seq[len(seq)-i]
+		seq[len(seq)-1] = tmp
+		fmt.Printf("%v\n", seq)
+	}
+	// 最小的元素调到最后位置
+	// tmp := seq[1]
+	// seq[1] = seq[len(seq)-1]
+	// seq[len(seq)-1] = tmp
+
 }
