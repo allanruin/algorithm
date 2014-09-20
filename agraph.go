@@ -80,7 +80,7 @@ func BuildGraph(edges []string) *Agraph {
 }
 
 func (graph *Agraph) getAdjs(s int) []int {
-	seq := make([]int, graph.N)
+	seq := make([]int, 0)
 	for e := graph.Adjlist[s].Arlist.Front(); e != nil; e = e.Next() {
 		arc := e.Value.(*Arc)
 		seq = append(seq, arc.Vertex)

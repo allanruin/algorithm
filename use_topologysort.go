@@ -23,4 +23,5 @@ func main() {
 	mygraph := graph.BuildGraph(edges)
 	seq := graph.TopologySort(mygraph)
 	fmt.Println("seq:", seq)
+	// seq: [0 3 1 2 5 4 6]
 }
