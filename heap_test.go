@@ -19,7 +19,7 @@ var pickMinResults = []int{1, 1, 2, 3, 2, 3}
 func TestPickMin(t *testing.T) {
 	for i, tt := range pickMinTests {
 
-		re := pickMin(tt, 0, 1, 2) + 1
+		re := pickMin(tt, 0, 1, 2, 3) + 1
 		if re != pickMinResults[i] {
 			t.Errorf("第%d个测试失败,期待:%v,得到:%v", i+1, pickMinResults[i], re)
 		}
@@ -38,8 +38,8 @@ var heapResults = [][]int{
 }
 
 var heapsortResults = [][]int{
-	[]int{INF, 13, 27, 38, 49, 49, 65, 76, 97},
-	[]int{INF, 1, 2, 7, 8, 9, 10},
+	[]int{INF, 97, 76, 65, 49, 49, 38, 27, 13},
+	[]int{INF, 10, 9, 8, 7, 2, 1},
 }
 
 func TestMakeHeap(t *testing.T) {
@@ -58,9 +58,9 @@ func TestHeapsort(t *testing.T) {
 	for i, tt := range heapTests {
 
 		Heapsort(&tt)
-		eq := reflect.DeepEqual(tt, heapResults[i])
+		eq := reflect.DeepEqual(tt, heapsortResults[i])
 		if !eq {
-			t.Errorf("第%d个Heapsort测试失败,期待:%v,得到:%v", i+1, heapResults[i], tt)
+			t.Errorf("第%d个Heapsort测试失败,期待:%v,得到:%v", i+1, heapsortResults[i], tt)
 		}
 
 	}
