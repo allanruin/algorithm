@@ -17,11 +17,13 @@ func TopologySort(graph *Agraph) []int {
 		seq = append(seq, val)
 		// 获取所有相邻的点并把其入度减一
 		vs := graph.getAdjs(val)
+		fmt.Printf("getadjs:%v\n", vs)
 		for i := range vs {
-			degree[i] = degree[i] - 1
-			if degree[i] == 0 {
+			t := vs[i]
+			degree[t] = degree[t] - 1
+			if degree[t] == 0 {
 				//有新的点入度为0，扔到入度零的队列zeros中
-				zeros = append(zeros, i)
+				zeros = append(zeros, t)
 			}
 		}
 
@@ -34,12 +36,14 @@ func initializeDegreeArray(graph *Agraph) ([]int, []int) {
 	zeros := make([]int, 0) // 储存为入度为0的顶点的编号
 
 	for i := range graph.Adjlist {
-		cnt := 0
 		for e := graph.Adjlist[i].Arlist.Front(); e != nil; e = e.Next() {
-			cnt = cnt + 1
+			arc := e.Value.(*Arc)
+			degree[arc.Vertex]++
 		}
-		degree[i] = cnt
-		if cnt == 0 {
+	}
+
+	for i := range degree {
+		if degree[i] == 0 {
 			zeros = append(zeros, i)
 		}
 	}
