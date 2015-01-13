@@ -44,3 +44,16 @@ digraph {
 
 
 ![带权值的图](https://github.com/allanruin/algorithm/blob/master/illustrates/Graph_with_edge_label.PNG)
+
+
+某天尝试看看能不能用DOT来画用于KMP例子的图，发觉不太方便，大概只能画出这种：
+```
+digraph structs {
+    node [shape=record];
+
+    struct3 [label="B|B|C| |A|B|C|D|A|B| |A|B|C|D|A|B|C|D|A|B|D|E"];
+
+}
+```
+
+
